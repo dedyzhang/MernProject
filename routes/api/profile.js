@@ -7,6 +7,9 @@ const passport = require('passport');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
+//load Validation
+const validateProfileInput = require('../../validation/profile');
+
 router.get("/test", (req, res) => res.json({ msg: "Profile Works" }));
 
 // @route Get api/profile
@@ -22,11 +25,21 @@ router.get("/",passport.authenticate('jwt',{session: false}),(req,res) => {
         res.json(profile);
     }).catch(err => res.status(404).json(err));
 });
+
+
 // @route POST api/profile
 // @desc Create / edit user Profile
 // @access Private
 router.post("/",passport.authenticate('jwt',{session: false}),(req,res) => {
     //Get Fields
+    const {errors,isValid} = validateProfileInput(req.body);
+
+    //check Validation
+    if(!isValid) {
+        //return any errors with 400 status
+        return res.status(400).json(errors);
+    }
+
     const profileFields = {};
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
