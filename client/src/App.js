@@ -13,15 +13,11 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-        </Routes>
-          <div className='container'>
-            <Routes>
-              <Route exact path='/register' element={<Register />} />
-              <Route exact path='/login' element={<Login />} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route exact path='/register' element={<Register />} />
+            <Route exact path='/login' element={<Login />} />
+          </Routes>
         <Footer />
       </div>
     </Router>
