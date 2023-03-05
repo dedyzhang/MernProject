@@ -15,17 +15,17 @@ import Login from './components/auth/Login';
 function App() {
   return (
     <Provider store={store}>
-    <Router>
-      <div className="App">
-        <Navbar />
-          <Routes>
-            <Route exact path="/" element={<Landing />} />
-            <Route exact path='/register' element={<Register />} />
-            <Route exact path='/login' element={<Login />} />
-          </Routes>
-        <Footer />
-      </div>
-    </Router>
+      <Router>
+        <div className="App">
+          <Navbar />
+            <Routes>
+              <Route exact path="/" element={<Landing />} />
+              <Route exact path='/register' element={<Register />} />
+              <Route exact path='/login' element={<Login />} />
+            </Routes>
+          <Footer />
+        </div>
+      </Router>
     </Provider>
   );
 }
